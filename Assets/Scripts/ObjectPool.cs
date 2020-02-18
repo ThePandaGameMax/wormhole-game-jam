@@ -34,7 +34,8 @@ public class ObjectPool : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2.06f) + pool.prefab.transform.localScale.y) + planet.transform.position;
-                Quaternion spawnRotation = Quaternion.identity;
+                Quaternion spawnRotation = Random.rotation;
+                // Quaternion spawnRotation = Quaternion.identity;
                 GameObject obj = Instantiate(pool.prefab, spawnPosition, spawnRotation);
                 obj.AddComponent<BoxCollider>();
                 obj.AddComponent<FauxGravityBody>();
