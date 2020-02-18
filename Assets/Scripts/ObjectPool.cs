@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    public static ObjectPool instance;
+    public GameObject planet;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     [System.Serializable]
     public class Pool
     {
@@ -25,7 +33,13 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2.06f) + pool.prefab.transform.localScale.y) + planet.transform.position;
+                Quaternion spawnRotation = Quaternion.identity;
+                GameObject obj = Instantiate(pool.prefab, spawnPosition, spawnRotation);
+                obj.AddComponent<BoxCollider>();
+                obj.AddComponent<FauxGravityBody>();
+                obj.GetComponent<FauxGravityBody>().attractor = planet.GetComponent<FauxGravityAttractor>();
+
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -33,9 +47,21 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject SpawnFromPool(string tag)
     {
+        if (!poolDict.ContainsKey(tag))
+        {
+            Debug.LogWarning("Pool with tag " + tag + " doesnt exist");
+            return null;
+        }
+
+        GameObject objectToSpawn = poolDict[tag].Dequeue();
+
+        objectToSpawn.SetActive(true);
+
+        poolDict[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
 
     }
 }
