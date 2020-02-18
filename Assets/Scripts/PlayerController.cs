@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float carSpeed = 15;
+    public float carSpeed = 10;
+    public float maxSpeed = 70;
 
     private Rigidbody rb;
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        InvokeRepeating("ScaleSpeed", 10, 10);
     }
 
     // Update is called once per frame
@@ -29,6 +31,28 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * carSpeed * Time.fixedDeltaTime);
+
+        }
+    }
+    void ScaleSpeed()
+    {
+        if (carSpeed < maxSpeed)
+        {
+            carSpeed = carSpeed * 1.5f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+
+        {
+            Debug.Log("GAME OVER");
+        }
+
+        if (other.tag == "Obstacle")
+        {
+            carSpeed = 15f;
         }
     }
 }

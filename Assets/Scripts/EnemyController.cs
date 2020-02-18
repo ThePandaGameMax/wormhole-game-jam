@@ -5,34 +5,27 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
-    public float lookRadius = 10f;
-    public float objectTooFar = 20f;
-    public Transform car;
-    public NavMeshAgent worm;
+    public float wormSpeed = 5;
+    private Transform car;
+    public GameObject worm;
+    public static float wormRange = 150;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        car = GameObject.Find("Car").GetComponent<Transform>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        float distance = Vector3.Distance(car.position, transform.position);
-
-        if (distance <= lookRadius)
+        float distance = Vector3.Distance(worm.transform.position, car.position);
+        if (distance < wormRange)
         {
-            Facecar();
-            worm.SetDestination(car.position);
-
+            Vector3 direction = (car.position - transform.position);
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+            transform.rotation = lookRotation;
+            worm.transform.position += worm.transform.forward * wormSpeed * Time.fixedDeltaTime;
         }
     }
 
-    void Facecar()
-    {
-        Vector3 direction = (car.position - transform.position);
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = lookRotation;
-    }
 }
