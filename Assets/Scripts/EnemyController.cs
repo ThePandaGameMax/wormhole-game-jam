@@ -8,14 +8,12 @@ public class EnemyController : MonoBehaviour
     public float wormSpeed = 5;
     private Transform car;
     public GameObject worm;
-    private Vector3 startPos;
     public static float wormRange = 150;
 
     // Start is called before the first frame update
     void Start()
     {
         car = GameObject.Find("Car").GetComponent<Transform>();
-        startPos = worm.transform.position;
     }
 
     void FixedUpdate()
