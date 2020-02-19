@@ -123,5 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c1b1f30e7a2b048b0526cf8589601b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wormSpeed: 5
+  wormSpeed: 10
   worm: {fileID: 5028750640996226100}

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float wormSpeed = 5;
+    public float wormSpeed = 10;
     private Transform car;
     public GameObject worm;
     public static float wormRange = 150;
