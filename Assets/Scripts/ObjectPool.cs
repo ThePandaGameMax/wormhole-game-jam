@@ -35,6 +35,10 @@ public class ObjectPool : MonoBehaviour
             {
                 Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2.06f) + pool.prefab.transform.localScale.y) + planet.transform.position;
                 Quaternion spawnRotation = Random.rotation;
+                if (pool.tag == "worm")
+                {
+                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 1.98f) + pool.prefab.transform.localScale.y) + planet.transform.position;
+                }
                 // Quaternion spawnRotation = Quaternion.identity;
                 GameObject obj = Instantiate(pool.prefab, spawnPosition, spawnRotation);
                 obj.AddComponent<BoxCollider>();

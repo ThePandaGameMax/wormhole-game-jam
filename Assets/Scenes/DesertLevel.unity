@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b592438e696569b44a767d116c1c32f5, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7b60774f519a4334fb64e6e01c455f72, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.51884717, g: 0.48869628, b: 0.5705668, a: 1}
+  m_IndirectSpecularColor: {r: 0.5410168, g: 0.5579467, b: 0.66948533, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -409,7 +409,6 @@ MonoBehaviour:
   deathAudio: {fileID: 1245220530}
   rockHitAudio: {fileID: 304322400}
   engineBoostAudio: {fileID: 1534347299}
-  carSpeed: 15
   maxSpeed: 70
 --- !u!114 &305015893
 MonoBehaviour:
@@ -466,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d036aba54e7034fb6b837811204cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEvery: 0.5
+  spawnEvery: 0.3
 --- !u!4 &395117368
 Transform:
   m_ObjectHideFlags: 0
@@ -1119,11 +1118,11 @@ MonoBehaviour:
   pools:
   - tag: rock
     prefab: {fileID: 703476703049767078, guid: fb0da3fe7566d4c41afa575f4e2cc257, type: 3}
-    size: 250
+    size: 300
   - tag: worm
-    prefab: {fileID: 5028750640996226100, guid: 085da399628075b408f5ff3c51305bdd,
+    prefab: {fileID: 4992824010402890004, guid: 139afabd6f628e14ab93a12f7a585ea5,
       type: 3}
-    size: 150
+    size: 200
 --- !u!4 &893218204
 Transform:
   m_ObjectHideFlags: 0
@@ -1804,7 +1803,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7843873bd9c3b8043a0ee72ad1c16c27, type: 2}
+  - {fileID: 2100000, guid: c7176a41339b5244189c4a7731f9a00b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

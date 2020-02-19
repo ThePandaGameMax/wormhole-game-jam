@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource engineBoostAudio;
 
     private CinemachineVirtualCamera vCam;
-    public float carSpeed = 10;
+    public static float carSpeed = 15;
     public float maxSpeed = 70;
 
     private Rigidbody rb;
@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
         destroyBuggy = GameObject.Find("Dune Buggy4").GetComponent<DestroyBuggy>();
         vCam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         rb = GetComponent<Rigidbody>();
-        InvokeRepeating("ScaleSpeed", 10, 10);
+        engineBoostAudio.Play();
+        InvokeRepeating("ScaleSpeed", 2, 2);
     }
 
     // Update is called once per frame
@@ -45,10 +46,16 @@ public class PlayerController : MonoBehaviour
     }
     void ScaleSpeed()
     {
-        if (carSpeed < maxSpeed)
+        if (!DestroyBuggy.isDead)
         {
-            engineBoostAudio.Play();
-            carSpeed = carSpeed * 1.5f;
+            if (carSpeed < maxSpeed)
+            {
+                carSpeed = carSpeed * 1.2f;
+            }
+        }
+        else
+        {
+            carSpeed = 0;
         }
     }
 
@@ -57,9 +64,11 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Enemy")
 
         {
+            Debug.Log("enemy");
             destroyBuggy.DestroyCar();
             vCam.LookAt = null;
             vCam.Follow = null;
+            engineBoostAudio.Stop();
             deathAudio.Play();
         }
 

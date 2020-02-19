@@ -18,13 +18,16 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float distance = Vector3.Distance(worm.transform.position, car.position);
-        if (distance < wormRange)
+        if (!DestroyBuggy.isDead)
         {
-            Vector3 direction = (car.position - transform.position);
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
-            transform.rotation = lookRotation;
-            worm.transform.position += worm.transform.forward * wormSpeed * Time.fixedDeltaTime;
+            float distance = Vector3.Distance(worm.transform.position, car.position);
+            if (distance < wormRange)
+            {
+                Vector3 direction = (car.position - transform.position);
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+                transform.rotation = lookRotation;
+                worm.transform.position += worm.transform.forward * wormSpeed * Time.fixedDeltaTime;
+            }
         }
     }
 
